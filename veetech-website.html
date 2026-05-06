@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VeeTech Tutoring Academy – Premier Academic Tutoring Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1628;
+  --blue: #0d2144;
+  --orange: #f05a28;
+  --orange2: #ff7a40;
+  --gold: #f5a623;
+  --white: #ffffff;
+  --offwhite: #f4f6fb;
+  --light-gray: #e8ecf4;
+  --mid-gray: #6b7a99;
+  --dark: #111827;
+  --text: #1e2d47;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Barlow',sans-serif; color:var(--text); background:var(--white); overflow-x:hidden; }
+
+/* TOP BAR */
+.topbar { background:var(--navy); padding:7px 5vw; display:flex; align-items:center; justify-content:space-between; font-size:0.76rem; }
+.topbar-left { display:flex; }
+.topbar-left a { color:rgba(255,255,255,0.7); text-decoration:none; padding:0 14px; border-right:1px solid rgba(255,255,255,0.12); transition:color 0.2s; font-weight:500; }
+.topbar-left a:first-child { padding-left:0; }
+.topbar-left a:hover { color:var(--orange); }
+.topbar-right { display:flex; align-items:center; gap:20px; }
+.topbar-contact { display:flex; gap:20px; }
+.topbar-contact a { color:rgba(255,255,255,0.7); text-decoration:none; display:flex; align-items:center; gap:5px; transition:color 0.2s; }
+.topbar-contact a:hover { color:var(--orange); }
+.topbar-socials { display:flex; gap:8px; border-left:1px solid rgba(255,255,255,0.12); padding-left:14px; }
+.topbar-socials a { width:24px; height:24px; border:1px solid rgba(255,255,255,0.2); border-radius:3px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.6); text-decoration:none; font-size:0.68rem; font-weight:700; transition:all 0.2s; }
+.topbar-socials a:hover { background:var(--orange); border-color:var(--orange); color:#fff; }
+
+/* MAIN NAV */
+.mainnav { background:var(--white); padding:0 5vw; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 16px rgba(0,0,0,0.08); position:sticky; top:0; z-index:200; border-bottom:3px solid var(--orange); }
+.nav-logo { display:flex; align-items:center; gap:10px; padding:12px 0; text-decoration:none; }
+.logo-icon { width:44px; height:44px; background:var(--navy); border-radius:4px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.logo-icon span:first-child { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1rem; color:#fff; }
+.logo-icon span:last-child  { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1rem; color:var(--orange); }
+.logo-text strong { display:block; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.05rem; color:var(--navy); }
+.logo-text small  { font-size:0.6rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--mid-gray); }
+.nav-menu { display:flex; gap:0; height:100%; align-items:center; }
+.nav-item { position:relative; height:100%; display:flex; align-items:center; }
+.nav-link { display:flex; align-items:center; gap:4px; padding:22px 16px; font-size:0.78rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--navy); text-decoration:none; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-3px; transition:color 0.2s,border-color 0.2s; white-space:nowrap; background:none; border-top:none; border-left:none; border-right:none; font-family:'Barlow',sans-serif; }
+.nav-link:hover,.nav-link.active { color:var(--orange); border-bottom-color:var(--orange); }
+.nav-link svg { width:9px; height:9px; fill:currentColor; transition:transform 0.2s; }
+.nav-item:hover > .nav-link svg { transform:rotate(180deg); }
+.dropdown { position:absolute; top:100%; left:0; background:#fff; min-width:210px; box-shadow:0 8px 32px rgba(0,0,0,0.12); border-top:3px solid var(--orange); opacity:0; visibility:hidden; transform:translateY(-8px); transition:all 0.2s; z-index:300; }
+.nav-item:hover .dropdown { opacity:1; visibility:visible; transform:translateY(0); }
+.dropdown a { display:block; padding:10px 18px; font-size:0.8rem; font-weight:600; color:var(--text); text-decoration:none; border-bottom:1px solid var(--light-gray); transition:background 0.15s,color 0.15s,padding 0.15s; }
+.dropdown a:hover { background:var(--offwhite); color:var(--orange); padding-left:24px; }
+.dropdown a:last-child { border-bottom:none; }
+.nav-enrol { background:var(--orange); color:#fff; padding:10px 20px; border-radius:2px; margin-left:12px; font-size:0.76rem; letter-spacing:1px; font-weight:700; text-decoration:none; white-space:nowrap; transition:background 0.2s; text-transform:uppercase; }
+.nav-enrol:hover { background:var(--orange2); }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; }
+.hamburger span { width:22px; height:2px; background:var(--navy); border-radius:2px; }
+
+/* HERO */
+.hero { position:relative; min-height:90vh; background:linear-gradient(110deg,#061122 0%,#0d2144 50%,#0f3060 100%); display:flex; align-items:center; overflow:hidden; }
+.hero-bg-shapes { position:absolute; inset:0; pointer-events:none; }
+.hbs { position:absolute; border-radius:50%; }
+.hbs1 { width:700px; height:700px; right:-200px; bottom:-150px; background:rgba(240,90,40,0.06); animation:hfloat 9s ease-in-out infinite; }
+.hbs2 { width:320px; height:320px; right:28%; top:5%; background:rgba(255,255,255,0.02); animation:hfloat 7s 2s ease-in-out infinite; }
+.hbs3 { width:180px; height:180px; left:8%; bottom:25%; background:rgba(240,90,40,0.04); animation:hfloat 6s 4s ease-in-out infinite; }
+@keyframes hfloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-22px)} }
+.hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px); background-size:65px 65px; }
+.hero-right-panel { position:absolute; right:0; top:0; bottom:0; width:50%; background:linear-gradient(135deg,rgba(13,33,68,0.3) 0%,rgba(240,90,40,0.06) 100%); clip-path:polygon(12% 0,100% 0,100% 100%,0 100%); }
+
+/* Hero visual with illustrated students */
+.hero-illustration { position:absolute; right:4vw; bottom:0; display:flex; align-items:flex-end; gap:16px; }
+.stu { display:flex; flex-direction:column; align-items:center; animation:stuRise 0.9s ease both; }
+.stu:nth-child(2) { animation-delay:0.15s; margin-bottom:50px; }
+.stu:nth-child(3) { animation-delay:0.3s; }
+@keyframes stuRise { from{opacity:0;transform:translateY(50px)} to{opacity:1;transform:translateY(0)} }
+.stu-head { width:52px; height:52px; border-radius:50%; border:3px solid rgba(255,255,255,0.25); margin-bottom:3px; }
+.stu-h1 { background:linear-gradient(160deg,#c8a070,#a07040); }
+.stu-h2 { background:linear-gradient(160deg,#b87860,#9a5a30); }
+.stu-h3 { background:linear-gradient(160deg,#c0906a,#986040); }
+.stu-body { width:68px; border-radius:10px 10px 0 0; position:relative; }
+.stu-b1 { height:180px; background:linear-gradient(180deg,#2a5298,#1a3060); }
+.stu-b2 { height:220px; background:linear-gradient(180deg,#3a62a8,#1e3a6e); }
+.stu-b3 { height:175px; background:linear-gradient(180deg,#e0e0e0,#b8b8b8); }
+.stu-hat { width:56px; height:28px; background:#f0f0f0; border-radius:4px 4px 0 0; position:relative; margin-bottom:-2px; }
+.stu-hat::before { content:''; position:absolute; top:-12px; left:50%; transform:translateX(-50%); width:18px; height:13px; background:#f0f0f0; border-radius:2px; }
+.stu-tag { position:absolute; bottom:10px; left:50%; transform:translateX(-50%); background:rgba(240,90,40,0.92); color:#fff; font-size:0.58rem; padding:3px 8px; border-radius:10px; white-space:nowrap; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+.stu-access { position:absolute; top:20px; right:28px; background:rgba(240,90,40,0.9); color:#fff; font-size:0.65rem; font-weight:700; letter-spacing:1px; padding:5px 14px; border-radius:2px; text-transform:uppercase; }
+
+.hero-content { position:relative; z-index:10; padding:0 5vw; max-width:560px; }
+.hero-eyebrow { display:inline-flex; align-items:center; gap:10px; background:rgba(240,90,40,0.12); border:1px solid rgba(240,90,40,0.35); color:var(--orange); font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; font-weight:700; padding:6px 14px; border-radius:2px; margin-bottom:24px; animation:fadeUp 0.7s ease both; }
+.hero-eyebrow::before { content:''; width:18px; height:2px; background:var(--orange); }
+.hero h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(2.8rem,6.5vw,5.5rem); font-weight:800; line-height:1.0; color:#fff; margin-bottom:6px; animation:fadeUp 0.7s 0.1s ease both; }
+.hero-tagstrip { display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4.5vw,3.8rem); font-weight:700; color:#fff; background:var(--orange); padding:5px 20px 5px 12px; margin:8px 0 26px; clip-path:polygon(0 0,100% 0,97% 100%,0 100%); animation:fadeUp 0.7s 0.2s ease both; }
+.hero-sub { font-size:0.98rem; font-weight:300; line-height:1.8; color:rgba(255,255,255,0.72); margin-bottom:36px; max-width:440px; animation:fadeUp 0.7s 0.3s ease both; }
+.hero-actions { display:flex; gap:12px; flex-wrap:wrap; animation:fadeUp 0.7s 0.4s ease both; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+.btn-primary { background:var(--orange); color:#fff; padding:14px 34px; font-weight:700; font-size:0.85rem; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; border-radius:2px; border:none; cursor:pointer; transition:background 0.2s,transform 0.15s; display:inline-block; font-family:'Barlow',sans-serif; }
+.btn-primary:hover { background:var(--orange2); transform:translateY(-2px); }
+.btn-outline { background:transparent; color:#fff; padding:13px 34px; font-weight:600; font-size:0.85rem; letter-spacing:1.5px; text-transform:uppercase; text-decoration:none; border-radius:2px; display:inline-block; border:2px solid rgba(255,255,255,0.3); transition:border-color 0.2s; font-family:'Barlow',sans-serif; }
+.btn-outline:hover { border-color:#fff; }
+
+/* Hero stat strip */
+.hero-strip { position:absolute; bottom:0; left:0; right:0; background:rgba(6,17,34,0.9); backdrop-filter:blur(12px); border-top:2px solid var(--orange); display:flex; }
+.hsi { flex:1; display:flex; align-items:center; gap:12px; padding:16px 24px; border-right:1px solid rgba(255,255,255,0.06); }
+.hsi:last-child { border-right:none; }
+.hsi-ico { font-size:1.4rem; flex-shrink:0; }
+.hsi-num { font-family:'Barlow Condensed',sans-serif; font-size:1.4rem; font-weight:800; color:var(--orange); line-height:1; }
+.hsi-lbl { font-size:0.65rem; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.45); }
+
+/* QUICK LINKS */
+.quicklinks { background:var(--offwhite); border-bottom:1px solid var(--light-gray); display:flex; overflow-x:auto; }
+.quicklinks a { flex-shrink:0; padding:13px 24px; font-size:0.74rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--navy); text-decoration:none; border-right:1px solid var(--light-gray); display:flex; align-items:center; gap:7px; transition:background 0.2s,color 0.2s; }
+.quicklinks a:hover { background:var(--orange); color:#fff; }
+
+/* SECTIONS */
+.section { padding:80px 5vw; }
+.section-alt { background:var(--offwhite); }
+.section-dark { background:var(--navy); }
+.section-head { margin-bottom:48px; }
+.sec-label { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--orange); font-weight:700; display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.sec-label::after { content:''; flex:0 0 28px; height:2px; background:var(--orange); }
+.sec-title { font-family:'Barlow Condensed',sans-serif; font-size:clamp(1.9rem,3.8vw,3rem); font-weight:800; line-height:1.05; color:var(--navy); }
+.sec-title .accent { color:var(--orange); }
+.section-dark .sec-title { color:#fff; }
+.sec-sub { font-size:0.92rem; line-height:1.8; color:var(--mid-gray); max-width:500px; margin-top:10px; }
+.section-dark .sec-sub { color:rgba(255,255,255,0.5); }
+
+/* SUBJECTS */
+.subjects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:1px; background:var(--light-gray); border:1px solid var(--light-gray); }
+.scard { background:#fff; padding:28px 24px; border-top:3px solid transparent; transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s; }
+.scard:hover { border-top-color:var(--orange); transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,0.09); z-index:2; position:relative; }
+.scard-ico { font-size:1.9rem; margin-bottom:14px; }
+.scard h3 { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.12rem; color:var(--navy); margin-bottom:6px; }
+.scard p  { font-size:0.83rem; line-height:1.75; color:var(--mid-gray); }
+.stags { display:flex; gap:5px; flex-wrap:wrap; margin-top:12px; }
+.stag { font-size:0.62rem; letter-spacing:1.5px; text-transform:uppercase; padding:3px 9px; border:1px solid rgba(240,90,40,0.3); color:var(--orange); border-radius:1px; font-weight:700; }
+
+/* WHY */
+.why-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--light-gray); }
+.why-card { background:#fff; padding:36px 32px; display:flex; gap:18px; transition:background 0.2s; }
+.why-card:hover { background:#fffaf7; }
+.why-n { font-family:'Barlow Condensed',sans-serif; font-size:2.8rem; font-weight:800; color:rgba(240,90,40,0.15); line-height:1; flex-shrink:0; width:50px; }
+.why-card h4 { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.08rem; color:var(--navy); margin-bottom:6px; }
+.why-card p  { font-size:0.85rem; line-height:1.75; color:var(--mid-gray); }
+
+/* PROGRAMMES */
+.ptabs { display:flex; border-bottom:2px solid var(--light-gray); flex-wrap:wrap; }
+.ptab { padding:12px 24px; font-weight:700; font-size:0.75rem; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; color:var(--mid-gray); border-bottom:3px solid transparent; margin-bottom:-2px; background:none; border-top:none; border-left:none; border-right:none; transition:color 0.2s,border-color 0.2s; font-family:'Barlow',sans-serif; }
+.ptab.active { color:var(--orange); border-bottom-color:var(--orange); }
+.ppanel { display:none; }
+.ppanel.active { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:32px; }
+.pitem { background:#fff; border:1px solid var(--light-gray); border-left:3px solid var(--orange); padding:20px 22px; }
+.pitem h4 { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1rem; color:var(--navy); margin-bottom:5px; }
+.pitem p  { font-size:0.83rem; line-height:1.7; color:var(--mid-gray); }
+
+/* TESTIMONIALS */
+.tgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:22px; }
+.tcard { background:#fff; border:1px solid var(--light-gray); padding:28px 24px; position:relative; transition:box-shadow 0.2s,transform 0.2s; }
+.tcard:hover { box-shadow:0 8px 28px rgba(0,0,0,0.08); transform:translateY(-3px); }
+.tcard::before { content:'"'; font-family:'Barlow Condensed',sans-serif; font-size:4.5rem; font-weight:800; color:rgba(240,90,40,0.08); line-height:1; position:absolute; top:10px; right:18px; }
+.tcard-stars { color:var(--gold); font-size:0.8rem; letter-spacing:2px; margin-bottom:12px; }
+.tcard-text { font-size:0.88rem; line-height:1.8; color:var(--text); font-weight:300; font-style:italic; margin-bottom:18px; }
+.tcard-author { display:flex; align-items:center; gap:10px; }
+.tcard-av { width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,var(--orange),var(--gold)); display:flex; align-items:center; justify-content:center; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; color:#fff; flex-shrink:0; }
+.tcard-name { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:0.92rem; color:var(--navy); }
+.tcard-role { font-size:0.68rem; color:var(--mid-gray); letter-spacing:1px; }
+
+/* ENROLMENT */
+.enrol-wrap { display:grid; grid-template-columns:1fr 360px; gap:48px; align-items:start; }
+.steps { display:flex; align-items:center; margin-bottom:32px; }
+.sdot-wrap { display:flex; align-items:center; gap:7px; flex-shrink:0; }
+.sdot { width:30px; height:30px; border-radius:50%; background:var(--light-gray); border:2px solid var(--light-gray); display:flex; align-items:center; justify-content:center; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.88rem; color:var(--mid-gray); transition:all 0.3s; flex-shrink:0; }
+.slabel { font-size:0.68rem; letter-spacing:1px; text-transform:uppercase; color:var(--mid-gray); font-weight:600; transition:color 0.3s; white-space:nowrap; }
+.sline { flex:1; height:2px; background:var(--light-gray); margin:0 8px; }
+.sdot-wrap.active .sdot { background:var(--orange); border-color:var(--orange); color:#fff; }
+.sdot-wrap.active .slabel { color:var(--orange); }
+.sdot-wrap.done .sdot { background:#e8f5e9; border-color:#4caf50; color:#4caf50; }
+.sdot-wrap.done .slabel { color:var(--navy); }
+.frow { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.fg { display:flex; flex-direction:column; gap:5px; margin-bottom:14px; }
+.fg label { font-size:0.72rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--navy); }
+.fg input,.fg select,.fg textarea { background:var(--offwhite); border:1.5px solid var(--light-gray); color:var(--text); padding:11px 13px; border-radius:3px; font-family:'Barlow',sans-serif; font-size:0.88rem; outline:none; transition:border-color 0.2s; appearance:none; }
+.fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--orange); background:#fff; }
+.fg input.invalid,.fg select.invalid { border-color:#e53935; }
+.fg input::placeholder,.fg textarea::placeholder { color:var(--mid-gray); }
+.err { font-size:0.7rem; color:#e53935; min-height:14px; }
+.chk-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; background:var(--offwhite); border:1.5px solid var(--light-gray); padding:12px; border-radius:3px; }
+.chk { display:flex; align-items:center; gap:7px; font-size:0.83rem; color:var(--text); cursor:pointer; padding:4px 6px; border-radius:2px; transition:background 0.15s; }
+.chk:hover { background:rgba(240,90,40,0.06); }
+.chk input { width:14px; height:14px; accent-color:var(--orange); flex-shrink:0; }
+.eside-card { background:var(--offwhite); border:1px solid var(--light-gray); border-top:3px solid var(--orange); padding:22px; margin-bottom:14px; }
+.eside-card h4 { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:0.98rem; color:var(--navy); margin-bottom:5px; }
+.eside-card p  { font-size:0.83rem; line-height:1.75; color:var(--mid-gray); }
+.success-box { text-align:center; padding:40px 16px; }
+.success-box .big-emoji { font-size:3.2rem; margin-bottom:14px; }
+.success-box h3 { font-family:'Barlow Condensed',sans-serif; font-size:1.9rem; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.success-box p { color:var(--mid-gray); line-height:1.8; margin-bottom:22px; }
+
+/* CTA BANNER */
+.cta-banner { background:var(--navy); padding:72px 5vw; display:flex; align-items:center; justify-content:space-between; gap:36px; flex-wrap:wrap; position:relative; overflow:hidden; }
+.cta-banner::before { content:''; position:absolute; right:-80px; top:50%; transform:translateY(-50%); width:480px; height:480px; border-radius:50%; background:radial-gradient(circle,rgba(240,90,40,0.1),transparent 70%); }
+.cta-text h2 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(1.8rem,3.8vw,2.8rem); font-weight:800; color:#fff; margin-bottom:6px; }
+.cta-text p  { font-size:0.92rem; color:rgba(255,255,255,0.55); font-weight:300; }
+.cta-btns { display:flex; gap:12px; flex-wrap:wrap; position:relative; z-index:2; }
+
+/* FOOTER */
+footer { background:#060f1d; padding:56px 5vw 0; }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:44px; padding-bottom:44px; border-bottom:1px solid rgba(255,255,255,0.06); }
+.flogo { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+.flogo-box { width:40px; height:40px; background:var(--orange); border-radius:3px; display:flex; align-items:center; justify-content:center; }
+.flogo-box span:first-child { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:0.85rem; color:#fff; }
+.flogo-box span:last-child  { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:0.85rem; color:var(--navy); }
+.flogo strong { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:0.95rem; color:#fff; }
+.footer-brand p { font-size:0.82rem; line-height:1.8; color:rgba(255,255,255,0.4); }
+.footer-col h5 { font-family:'Rajdhani',sans-serif; font-weight:700; font-size:0.82rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; color:rgba(255,255,255,0.85); }
+.footer-col a  { display:block; font-size:0.8rem; color:rgba(255,255,255,0.4); text-decoration:none; margin-bottom:9px; transition:color 0.2s; }
+.footer-col a:hover { color:var(--orange); }
+.footer-bottom { padding:18px 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+.footer-bottom p { font-size:0.72rem; color:rgba(255,255,255,0.28); }
+.fsocials { display:flex; gap:7px; }
+.fsoc { width:30px; height:30px; border:1px solid rgba(255,255,255,0.14); border-radius:3px; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.4); font-size:0.68rem; font-weight:700; text-decoration:none; transition:all 0.2s; }
+.fsoc:hover { background:var(--orange); border-color:var(--orange); color:#fff; }
+
+/* WHATSAPP */
+.wa-float { position:fixed; bottom:26px; right:26px; z-index:999; display:flex; align-items:center; gap:9px; background:#25D366; color:#fff; text-decoration:none; padding:12px 18px 12px 13px; border-radius:50px; font-family:'Barlow',sans-serif; font-weight:700; font-size:0.83rem; box-shadow:0 4px 22px rgba(37,211,102,0.4); animation:waPulse 2.5s ease-in-out infinite; transition:transform 0.2s,box-shadow 0.2s; }
+.wa-float svg { width:20px; height:20px; fill:#fff; flex-shrink:0; }
+.wa-float:hover { transform:translateY(-3px) scale(1.04); box-shadow:0 8px 30px rgba(37,211,102,0.55); animation:none; }
+@keyframes waPulse { 0%,100%{box-shadow:0 4px 22px rgba(37,211,102,0.4)} 50%{box-shadow:0 4px 34px rgba(37,211,102,0.65)} }
+
+/* RESPONSIVE */
+@media(max-width:1024px){ .enrol-wrap{grid-template-columns:1fr;} .footer-grid{grid-template-columns:1fr 1fr;} }
+@media(max-width:768px){
+  .topbar{display:none;} .nav-menu{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;box-shadow:0 8px 24px rgba(0,0,0,0.1);border-top:2px solid var(--orange);height:auto;} .nav-menu.open{display:flex;} .nav-link{padding:13px 20px;border-bottom:1px solid var(--light-gray);margin-bottom:0!important;border-bottom-width:1px!important;} .dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border-top:none;border-left:3px solid var(--orange);} .hamburger{display:flex;} .why-grid{grid-template-columns:1fr;} .ppanel.active{grid-template-columns:1fr;} .frow{grid-template-columns:1fr;} .hero-illustration{display:none;} .footer-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){ .wa-float span{display:none;} .wa-float{padding:13px;border-radius:50%;bottom:18px;right:18px;} .hsi{padding:12px 14px;} }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="#">Home</a>
+    <a href="#subjects">Subjects</a>
+    <a href="#curriculum">Programmes</a>
+    <a href="#testimonials">Stories</a>
+    <a href="#enroll">Enrol</a>
+    <a href="#cta">Contact</a>
+  </div>
+  <div class="topbar-right">
+    <div class="topbar-contact">
+      <a href="tel:+254742153142">📞 +254 742 153 142</a>
+      <a href="mailto:info@veetech.ac.ke">✉ info@veetech.ac.ke</a>
+    </div>
+    <div class="topbar-socials">
+      <a href="#">f</a><a href="#">X</a><a href="#">in</a><a href="#">yt</a>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN NAV -->
+<nav class="mainnav">
+  <a href="#" class="nav-logo">
+    <div class="logo-icon"><span>VEE</span><span>TECH</span></div>
+    <div class="logo-text">
+      <strong>VeeTech Tutoring Academy</strong>
+      <small>Premier Academic Tutoring Centre</small>
+    </div>
+  </a>
+  <div class="nav-menu" id="navMenu">
+    <div class="nav-item"><button class="nav-link active">Home</button></div>
+    <div class="nav-item">
+      <button class="nav-link">About Us <svg viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"/></svg></button>
+      <div class="dropdown">
+        <a href="#why">Why VeeTech</a>
+        <a href="#testimonials">Parent Stories</a>
+        <a href="#">Our Tutors</a>
+        <a href="#">Mission &amp; Vision</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button class="nav-link">Subjects <svg viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"/></svg></button>
+      <div class="dropdown">
+        <a href="#subjects">All 13 Subjects</a>
+        <a href="#subjects">Mathematics &amp; Sciences</a>
+        <a href="#subjects">Languages</a>
+        <a href="#subjects">Arts &amp; Performance</a>
+        <a href="#subjects">Computer Skills</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button class="nav-link">Programmes <svg viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z"/></svg></button>
+      <div class="dropdown">
+        <a href="#curriculum">CBC Primary</a>
+        <a href="#curriculum">Junior Secondary</a>
+        <a href="#curriculum">KCSE Preparation</a>
+        <a href="#curriculum">Arts &amp; Performance</a>
+        <a href="#curriculum">Holiday Intensives</a>
+      </div>
+    </div>
+    <div class="nav-item"><button class="nav-link">Student Life</button></div>
+    <a href="#enroll" class="nav-enrol">Enrol Now</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-shapes">
+    <div class="hbs hbs1"></div>
+    <div class="hbs hbs2"></div>
+    <div class="hbs hbs3"></div>
+  </div>
+  <div class="hero-grid"></div>
+  <div class="hero-right-panel"></div>
+
+  <!-- Illustrated students -->
+  <div class="hero-illustration">
+    <div class="stu">
+      <div class="stu-head stu-h1"></div>
+      <div class="stu-body stu-b1"><span class="stu-tag">CBC</span></div>
+    </div>
+    <div class="stu">
+      <div class="stu-head stu-h2"></div>
+      <div class="stu-body stu-b2"><span class="stu-tag">KCSE</span></div>
+    </div>
+    <div class="stu">
+      <div class="stu-hat"></div>
+      <div class="stu-head stu-h3" style="margin-top:0"></div>
+      <div class="stu-body stu-b3"><span class="stu-tag">Arts</span></div>
+    </div>
+    <span class="stu-access">500+ Families</span>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Premier Tutoring Centre · Nairobi, Kenya</div>
+    <h1>Inventing the Future</h1>
+    <div class="hero-tagstrip">— starts here.</div>
+    <p class="hero-sub">CBC · Junior Secondary · High School &amp; Beyond.<br>13 subjects. Expert tutors. 500+ families across Kenya.</p>
+    <div class="hero-actions">
+      <a href="#enroll" class="btn-primary">Enrol Today</a>
+      <a href="#subjects" class="btn-outline">Explore Subjects</a>
+    </div>
+  </div>
+
+  <div class="hero-strip">
+    <div class="hsi"><div class="hsi-ico">👨‍👩‍👧</div><div><div class="hsi-num">500+</div><div class="hsi-lbl">Families Enrolled</div></div></div>
+    <div class="hsi"><div class="hsi-ico">📚</div><div><div class="hsi-num">13</div><div class="hsi-lbl">Subjects Offered</div></div></div>
+    <div class="hsi"><div class="hsi-ico">🏆</div><div><div class="hsi-num">★★★★★</div><div class="hsi-lbl">Parent Rating</div></div></div>
+    <div class="hsi"><div class="hsi-ico">📍</div><div><div class="hsi-num">Nairobi</div><div class="hsi-lbl">Kenya-Wide</div></div></div>
+  </div>
+</section>
+
+<!-- QUICK LINKS -->
+<div class="quicklinks">
+  <a href="#subjects"><span>📐</span> Mathematics</a>
+  <a href="#subjects"><span>🔬</span> Sciences</a>
+  <a href="#subjects"><span>🖥️</span> Computer Skills</a>
+  <a href="#subjects"><span>🎤</span> Public Speaking</a>
+  <a href="#subjects"><span>🎭</span> Drama</a>
+  <a href="#subjects"><span>🎵</span> Music</a>
+  <a href="#subjects"><span>🧠</span> Psychology</a>
+  <a href="#curriculum"><span>📅</span> Holiday Camps</a>
+  <a href="#enroll"><span>✅</span> Enrol Now</a>
+</div>
+
+<!-- SUBJECTS -->
+<section class="section section-alt" id="subjects">
+  <div class="section-head">
+    <div class="sec-label">What We Teach</div>
+    <h2 class="sec-title">13 <span class="accent">Subjects,</span> One Academy</h2>
+    <p class="sec-sub">Comprehensive support spanning all key disciplines — from Maths and Sciences to Drama, Music, and Public Speaking.</p>
+  </div>
+  <div class="subjects-grid">
+    <div class="scard"><div class="scard-ico">📐</div><h3>Mathematics</h3><p>Strong foundations to advanced problem-solving. We close gaps and build lasting confidence.</p><div class="stags"><span class="stag">CBC</span><span class="stag">KCPE</span><span class="stag">KCSE</span></div></div>
+    <div class="scard"><div class="scard-ico">🔬</div><h3>Sciences</h3><p>Biology, Chemistry &amp; Physics taught with deep reasoning and practical understanding.</p><div class="stags"><span class="stag">Junior Sec</span><span class="stag">KCSE</span></div></div>
+    <div class="scard"><div class="scard-ico">📖</div><h3>English &amp; Literature</h3><p>Reading, grammar, composition and literary analysis at every level.</p><div class="stags"><span class="stag">CBC</span><span class="stag">KCPE</span><span class="stag">KCSE</span></div></div>
+    <div class="scard"><div class="scard-ico">🌍</div><h3>Kiswahili</h3><p>Fluency, grammar mastery, and exam-ready essay and comprehension skills.</p><div class="stags"><span class="stag">CBC</span><span class="stag">KCPE</span><span class="stag">KCSE</span></div></div>
+    <div class="scard"><div class="scard-ico">🗺️</div><h3>Social Studies / Geography</h3><p>Kenyan and world geography, history, and civic education taught engagingly.</p><div class="stags"><span class="stag">CBC</span><span class="stag">KCPE</span></div></div>
+    <div class="scard"><div class="scard-ico">🔢</div><h3>Business Studies</h3><p>Commerce, accounting, and entrepreneurship for high school students.</p><div class="stags"><span class="stag">KCSE</span></div></div>
+    <div class="scard"><div class="scard-ico">🖥️</div><h3>Computer Skills</h3><p>Digital literacy, ICT, and computer science — preparing students for the modern world.</p><div class="stags"><span class="stag">All Levels</span></div></div>
+    <div class="scard"><div class="scard-ico">✝️</div><h3>Religious Education</h3><p>CRE &amp; IRE — exam technique, scripture analysis, and values-based learning.</p><div class="stags"><span class="stag">KCPE</span><span class="stag">KCSE</span></div></div>
+    <div class="scard"><div class="scard-ico">🧠</div><h3>Psychology</h3><p>Human behaviour, mental processes, emotions, and development for high school learners.</p><div class="stags"><span class="stag">High School</span><span class="stag">KCSE</span></div></div>
+    <div class="scard"><div class="scard-ico">📜</div><h3>History &amp; Government</h3><p>Kenyan and world history, government structures, and civic participation.</p><div class="stags"><span class="stag">KCPE</span><span class="stag">KCSE</span><span class="stag">Junior Sec</span></div></div>
+    <div class="scard"><div class="scard-ico">🎤</div><h3>Public Speaking</h3><p>Confidence, articulation, and presentation skills — from debates to storytelling.</p><div class="stags"><span class="stag">All Levels</span></div></div>
+    <div class="scard"><div class="scard-ico">🎭</div><h3>Drama</h3><p>Creativity and performance through theatre arts. Builds confidence, teamwork, and expression.</p><div class="stags"><span class="stag">All Levels</span></div></div>
+    <div class="scard"><div class="scard-ico">🎵</div><h3>Music</h3><p>Theory, practical performance, and music appreciation for all ages and skill levels.</p><div class="stags"><span class="stag">All Levels</span><span class="stag">KCSE</span></div></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section" id="why">
+  <div class="section-head">
+    <div class="sec-label">Why VeeTech</div>
+    <h2 class="sec-title">Learning That <span class="accent">Actually Works</span></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-n">01</div><div><h4>Personalised Attention</h4><p>Small class sizes and one-on-one sessions ensure every child gets the focus they need to thrive.</p></div></div>
+    <div class="why-card"><div class="why-n">02</div><div><h4>Curriculum-Aligned Teaching</h4><p>All programmes are fully aligned to CBC, KCPE, and KCSE standards. No surprises on exam day.</p></div></div>
+    <div class="why-card"><div class="why-n">03</div><div><h4>Experienced Tutors</h4><p>Subject specialists who know exactly where students lose marks — and how to fix it fast.</p></div></div>
+    <div class="why-card"><div class="why-n">04</div><div><h4>Progress Tracking</h4><p>Regular assessments and parent reports keep you fully informed of your child's growth.</p></div></div>
+    <div class="why-card"><div class="why-n">05</div><div><h4>Arts &amp; Performance</h4><p>Drama, Music, and Public Speaking develop the whole child — confident, creative, and ready for life.</p></div></div>
+    <div class="why-card"><div class="why-n">06</div><div><h4>Flexible Scheduling</h4><p>Weekday and weekend sessions, online and in-person options — built around your family's life.</p></div></div>
+  </div>
+</section>
+
+<!-- PROGRAMMES -->
+<section class="section section-alt" id="curriculum">
+  <div class="section-head">
+    <div class="sec-label">Our Programmes</div>
+    <h2 class="sec-title">Every Stage, <span class="accent">Covered</span></h2>
+    <p class="sec-sub">From Grade 1 to Form 4 — and beyond — we have a programme that fits your child perfectly.</p>
+  </div>
+  <div class="ptabs">
+    <button class="ptab active" onclick="switchProg('cbc',this)">CBC Primary</button>
+    <button class="ptab" onclick="switchProg('junior',this)">Junior Secondary</button>
+    <button class="ptab" onclick="switchProg('kcse',this)">High School / KCSE</button>
+    <button class="ptab" onclick="switchProg('arts',this)">Arts &amp; Performance</button>
+    <button class="ptab" onclick="switchProg('holiday',this)">Holiday Intensives</button>
+  </div>
+  <div class="ppanel active" id="pp-cbc">
+    <div class="pitem"><h4>Foundation Literacy</h4><p>Building reading, writing, and numeracy from Grade 1–6 with engaging, age-appropriate methods.</p></div>
+    <div class="pitem"><h4>STEM Exploration</h4><p>Hands-on science and technology activities that make learning come alive for young minds.</p></div>
+    <div class="pitem"><h4>KCPE Preparation</h4><p>Targeted revision and past-paper practice for Grade 6 students ahead of the national assessment.</p></div>
+    <div class="pitem"><h4>Creative Arts &amp; Values</h4><p>Supporting CBC's holistic development goals through Drama, Music, and civic engagement.</p></div>
+  </div>
+  <div class="ppanel" id="pp-junior">
+    <div class="pitem"><h4>Core Subjects Mastery</h4><p>Intensive support in Maths, English, Kiswahili, Sciences, and Social Studies at Grade 7–9 level.</p></div>
+    <div class="pitem"><h4>Computer &amp; ICT Skills</h4><p>Practical digital literacy, coding fundamentals, and responsible internet use.</p></div>
+    <div class="pitem"><h4>Study Skills Coaching</h4><p>Teaching students how to study effectively and manage time independently.</p></div>
+    <div class="pitem"><h4>End-of-Term Revision</h4><p>Structured revision ahead of school exams to consolidate learning and build confidence.</p></div>
+  </div>
+  <div class="ppanel" id="pp-kcse">
+    <div class="pitem"><h4>KCSE Past Paper Clinic</h4><p>Systematic practice with 10+ years of past papers and detailed mark scheme analysis.</p></div>
+    <div class="pitem"><h4>Subject Specialist Tuition</h4><p>One-on-one or small group sessions with tutors who specialise in each KCSE subject.</p></div>
+    <div class="pitem"><h4>Exam Technique Training</h4><p>Structuring answers, managing time, and maximising marks per question.</p></div>
+    <div class="pitem"><h4>University &amp; Career Guidance</h4><p>Helping Form 4 students navigate KUCCPS applications and career pathways.</p></div>
+  </div>
+  <div class="ppanel" id="pp-arts">
+    <div class="pitem"><h4>Drama &amp; Theatre</h4><p>Acting, stagecraft, and production — building confidence and creative expression at all levels.</p></div>
+    <div class="pitem"><h4>Music Theory &amp; Practice</h4><p>Reading music, vocals, instrumental basics, and music appreciation from beginner to advanced.</p></div>
+    <div class="pitem"><h4>Public Speaking &amp; Debate</h4><p>Speech training, debate techniques, storytelling, and presentation skills for exams and life.</p></div>
+    <div class="pitem"><h4>Psychology &amp; Life Skills</h4><p>Understanding behaviour, emotions, resilience — essential for today's young people.</p></div>
+  </div>
+  <div class="ppanel" id="pp-holiday">
+    <div class="pitem"><h4>April Holiday Camp</h4><p>Intensive 2-week programme covering all core subjects to bridge term-gap knowledge.</p></div>
+    <div class="pitem"><h4>August Revision Bootcamp</h4><p>High-energy exam-focused bootcamp for KCPE and KCSE candidates.</p></div>
+    <div class="pitem"><h4>December Skills Programme</h4><p>Computer skills, Drama, Music, and enrichment activities during the long holiday.</p></div>
+    <div class="pitem"><h4>Catch-Up Sessions</h4><p>Flexible one-on-one sessions for students who need to fill gaps at any time of year.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials">
+  <div class="section-head">
+    <div class="sec-label">Parent Stories</div>
+    <h2 class="sec-title">500+ Families <span class="accent">Can't Be Wrong</span></h2>
+  </div>
+  <div class="tgrid">
+    <div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-text">VeeTech transformed my son's attitude entirely. He went from dreading exams to looking forward to his sessions.</p><div class="tcard-author"><div class="tcard-av">JK</div><div><div class="tcard-name">James Kariuki</div><div class="tcard-role">Parent · Grade 8</div></div></div></div>
+    <div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-text">My daughter improved from D+ to B- in Mathematics in one term. Patient tutors and a structured approach.</p><div class="tcard-author"><div class="tcard-av">FW</div><div><div class="tcard-name">Faith Wanjiku</div><div class="tcard-role">Parent · Form 3</div></div></div></div>
+    <div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-text">My son joined the Drama and Public Speaking classes and I barely recognise him — the confidence he's built is remarkable.</p><div class="tcard-author"><div class="tcard-av">PM</div><div><div class="tcard-name">Peter Mutua</div><div class="tcard-role">Parent · Form 4</div></div></div></div>
+    <div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-text">The Music classes are exceptional. My child now plays keyboard and reads sheet music — we're so proud.</p><div class="tcard-author"><div class="tcard-av">AN</div><div><div class="tcard-name">Agnes Njoroge</div><div class="tcard-role">Parent · Grade 6</div></div></div></div>
+    <div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-text">My twins have different strengths and the tutors adapt to each of them. The personalised attention is unmatched.</p><div class="tcard-author"><div class="tcard-av">LO</div><div><div class="tcard-name">Lucy Otieno</div><div class="tcard-role">Parent · Grade 7</div></div></div></div>
+    <div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-text">VeeTech's KCPE programme was thorough and well-organised. My son scored excellently and is now in his dream school.</p><div class="tcard-author"><div class="tcard-av">DM</div><div><div class="tcard-name">David Mwenda</div><div class="tcard-role">Parent · KCPE 2024</div></div></div></div>
+  </div>
+</section>
+
+<!-- ENROLMENT -->
+<section class="section section-alt" id="enroll">
+  <div class="section-head">
+    <div class="sec-label">Join VeeTech</div>
+    <h2 class="sec-title">Enrolment <span class="accent">Form</span></h2>
+    <p class="sec-sub">Fill in the details below and our team will contact you within 24 hours to confirm your child's place.</p>
+  </div>
+  <div class="enrol-wrap">
+    <div id="enrol-form">
+      <div class="steps">
+        <div class="sdot-wrap active" id="si1"><div class="sdot">1</div><div class="slabel">Student Info</div></div>
+        <div class="sline"></div>
+        <div class="sdot-wrap" id="si2"><div class="sdot">2</div><div class="slabel">Academic Level</div></div>
+        <div class="sline"></div>
+        <div class="sdot-wrap" id="si3"><div class="sdot">3</div><div class="slabel">Parent &amp; Submit</div></div>
+      </div>
+
+      <!-- Step 1 -->
+      <div id="step1">
+        <div class="frow">
+          <div class="fg"><label>Student's Full Name *</label><input type="text" id="f-sname" placeholder="e.g. Brian Mwangi" oninput="clearErr(this)"><span class="err" id="err-sname"></span></div>
+          <div class="fg"><label>Date of Birth *</label><input type="date" id="f-dob" oninput="clearErr(this)"><span class="err" id="err-dob"></span></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Gender *</label><select id="f-gender" onchange="clearErr(this)"><option value="">Select</option><option>Male</option><option>Female</option><option>Prefer not to say</option></select><span class="err" id="err-gender"></span></div>
+          <div class="fg"><label>School Name</label><input type="text" id="f-school" placeholder="e.g. Nairobi Primary School"></div>
+        </div>
+        <div class="fg"><label>Special Learning Needs / Notes</label><textarea id="f-notes" rows="2" placeholder="e.g. Needs extra support in reading, shy learner..."></textarea></div>
+        <button class="btn-primary" onclick="goStep(2)">Next: Academic Level →</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="step2" style="display:none">
+        <div class="frow">
+          <div class="fg"><label>Current Grade / Form *</label><select id="f-grade" onchange="clearErr(this)"><option value="">Select grade</option><optgroup label="CBC Primary"><option>Grade 1</option><option>Grade 2</option><option>Grade 3</option><option>Grade 4</option><option>Grade 5</option><option>Grade 6</option></optgroup><optgroup label="Junior Secondary"><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option></optgroup><optgroup label="High School"><option>Form 1</option><option>Form 2</option><option>Form 3</option><option>Form 4</option></optgroup></select><span class="err" id="err-grade"></span></div>
+          <div class="fg"><label>Programme *</label><select id="f-prog" onchange="clearErr(this)"><option value="">Select programme</option><option>CBC Primary</option><option>Junior Secondary</option><option>KCPE Preparation</option><option>KCSE Preparation</option><option>Arts &amp; Performance</option><option>Holiday Intensive</option><option>Computer Skills Only</option></select><span class="err" id="err-prog"></span></div>
+        </div>
+        <div class="fg">
+          <label>Subjects Needed * <small style="font-weight:300;text-transform:none;letter-spacing:0;color:var(--mid-gray)">(select all that apply)</small></label>
+          <div class="chk-grid">
+            <label class="chk"><input type="checkbox" value="Mathematics"> Mathematics</label>
+            <label class="chk"><input type="checkbox" value="English"> English</label>
+            <label class="chk"><input type="checkbox" value="Kiswahili"> Kiswahili</label>
+            <label class="chk"><input type="checkbox" value="Sciences"> Sciences</label>
+            <label class="chk"><input type="checkbox" value="Social Studies"> Social Studies</label>
+            <label class="chk"><input type="checkbox" value="Business Studies"> Business Studies</label>
+            <label class="chk"><input type="checkbox" value="Computer Skills"> Computer Skills</label>
+            <label class="chk"><input type="checkbox" value="Religious Education"> Religious Education</label>
+            <label class="chk"><input type="checkbox" value="Psychology"> Psychology</label>
+            <label class="chk"><input type="checkbox" value="History & Government"> History &amp; Government</label>
+            <label class="chk"><input type="checkbox" value="Public Speaking"> Public Speaking</label>
+            <label class="chk"><input type="checkbox" value="Drama"> Drama</label>
+            <label class="chk"><input type="checkbox" value="Music"> Music</label>
+          </div>
+          <span class="err" id="err-subj"></span>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Session Preference *</label><select id="f-session" onchange="clearErr(this)"><option value="">Select</option><option>Weekday Mornings</option><option>Weekday Afternoons</option><option>Weekday Evenings</option><option>Weekends Only</option><option>Flexible / Any</option></select><span class="err" id="err-session"></span></div>
+          <div class="fg"><label>Mode of Learning *</label><select id="f-mode" onchange="clearErr(this)"><option value="">Select</option><option>In-Person</option><option>Online</option><option>Hybrid (Both)</option></select><span class="err" id="err-mode"></span></div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn-outline" onclick="goStep(1)" style="color:var(--navy);border-color:var(--light-gray);">← Back</button>
+          <button class="btn-primary" onclick="goStep(3)">Next: Parent Info →</button>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div id="step3" style="display:none">
+        <div class="frow">
+          <div class="fg"><label>Parent / Guardian Name *</label><input type="text" id="f-pname" placeholder="e.g. Mary Mwangi" oninput="clearErr(this)"><span class="err" id="err-pname"></span></div>
+          <div class="fg"><label>Relationship *</label><select id="f-rel" onchange="clearErr(this)"><option value="">Select</option><option>Mother</option><option>Father</option><option>Guardian</option><option>Other</option></select><span class="err" id="err-rel"></span></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Phone Number *</label><input type="tel" id="f-phone" placeholder="e.g. 0712 345 678" oninput="clearErr(this)"><span class="err" id="err-phone"></span></div>
+          <div class="fg"><label>Email Address</label><input type="email" id="f-email" placeholder="e.g. mary@email.com"></div>
+        </div>
+        <div class="fg"><label>Location / Area *</label><input type="text" id="f-location" placeholder="e.g. Kasarani, Nairobi" oninput="clearErr(this)"><span class="err" id="err-location"></span></div>
+        <div class="fg"><label>How did you hear about us?</label><select id="f-source"><option value="">Select</option><option>WhatsApp</option><option>Facebook</option><option>Friend / Family</option><option>Flyer / Poster</option><option>Google Search</option><option>Other</option></select></div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn-outline" onclick="goStep(2)" style="color:var(--navy);border-color:var(--light-gray);">← Back</button>
+          <button class="btn-primary" onclick="submitForm()">✅ Submit Enrolment</button>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="success-box" id="step-success" style="display:none">
+        <div class="big-emoji">🎉</div>
+        <h3>Enrolment Submitted!</h3>
+        <p>We've received <strong id="confirm-name"></strong>'s enrolment. Our team will call <strong id="confirm-phone" style="color:var(--orange)"></strong> within 24 hours.</p>
+        <a href="https://wa.me/254742153142" target="_blank" class="btn-primary">💬 Follow up on WhatsApp</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="eside-card"><h4>📅 Flexible Scheduling</h4><p>Weekday and weekend sessions available. We work around your child's school timetable.</p></div>
+      <div class="eside-card"><h4>💰 Transparent Fees</h4><p>Affordable term-based and monthly packages. Full fee structure shared upon enrolment.</p></div>
+      <div class="eside-card"><h4>🎓 Trial Session</h4><p>Not sure yet? We offer an introductory trial so your child can experience VeeTech first.</p></div>
+      <div class="eside-card"><h4>📞 Prefer to Call?</h4><p>Reach us on <a href="tel:+254742153142" style="color:var(--orange);font-weight:700;">0742 153 142</a> or WhatsApp anytime.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner" id="cta">
+  <div class="cta-text">
+    <h2>Ready to Unlock Your Child's Future?</h2>
+    <p>Join 500+ Kenyan families who trust VeeTech Tutoring Academy.</p>
+  </div>
+  <div class="cta-btns">
+    <a href="tel:+254742153142" class="btn-primary">📞 Call 0742 153 142</a>
+    <a href="https://wa.me/254742153142" target="_blank" class="btn-outline">💬 WhatsApp Us</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="flogo"><div class="flogo-box"><span>VEE</span><span>TECH</span></div><strong>VeeTech Tutoring Academy</strong></div>
+      <p>Premier Academic Tutoring Centre serving families across Kenya. CBC, KCPE, KCSE &amp; beyond — 13 subjects including Arts &amp; Performance.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Programmes</h5>
+      <a href="#curriculum">CBC Primary</a>
+      <a href="#curriculum">Junior Secondary</a>
+      <a href="#curriculum">KCSE Prep</a>
+      <a href="#curriculum">Arts &amp; Performance</a>
+      <a href="#curriculum">Holiday Camps</a>
+    </div>
+    <div class="footer-col">
+      <h5>Subjects</h5>
+      <a href="#subjects">Mathematics</a>
+      <a href="#subjects">Sciences</a>echo "# veetech" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/PhilipOndieki/veetech.git
+git push -u origin main
+      <a href="#subjects">Drama &amp; Music</a>
+      <a href="#subjects">Public Speaking</a>
+      <a href="#subjects">Computer Skills</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <a href="tel:+254742153142">+254 742 153 142</a>
+      <a href="mailto:info@veetech.ac.ke">info@veetech.ac.ke</a>
+      <a href="#">Nairobi, Kenya</a>
+      <a href="https://wa.me/254742153142">WhatsApp Us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 VeeTech Tutoring Academy. All rights reserved.</p>
+    <div class="fsocials">
+      <a class="fsoc" href="#">f</a><a class="fsoc" href="#">X</a><a class="fsoc" href="#">in</a><a class="fsoc" href="#">yt</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/254742153142" target="_blank" class="wa-float">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>Chat on WhatsApp</span>
+</a>
+
+<script>
+function toggleMenu() {
+  document.getElementById('navMenu').classList.toggle('open');
+}
+function switchProg(id, el) {
+  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.ppanel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('pp-' + id).classList.add('active');
+}
+function goStep(n) {
+  const cur = n === 2 ? 1 : n === 3 ? 2 : null;
+  if (cur && !validateStep(cur)) return;
+  if (cur) { document.getElementById('si'+cur).classList.remove('active'); document.getElementById('si'+cur).classList.add('done'); }
+  [1,2,3].forEach(i => { const el = document.getElementById('step'+i); if(el) el.style.display='none'; });
+  document.getElementById('step'+n).style.display = 'block';
+  document.getElementById('si'+n).classList.add('active');
+  document.getElementById('enrol-form').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function validateStep(n) {
+  let ok = true;
+  if (n===1) { ok=req('f-sname','err-sname','Full name required')&ok; ok=req('f-dob','err-dob','Date of birth required')&ok; ok=req('f-gender','err-gender','Please select gender')&ok; }
+  if (n===2) { ok=req('f-grade','err-grade','Please select grade')&ok; ok=req('f-prog','err-prog','Please select programme')&ok; ok=req('f-session','err-session','Please select session')&ok; ok=req('f-mode','err-mode','Please select mode')&ok; if(!document.querySelectorAll('.chk-grid input:checked').length){document.getElementById('err-subj').textContent='Select at least one subject';ok=false;}else{document.getElementById('err-subj').textContent='';} }
+  return ok;
+}
+function req(id,errId,msg) {
+  const el=document.getElementById(id); if(!el.value.trim()){document.getElementById(errId).textContent=msg;el.classList.add('invalid');return false;} document.getElementById(errId).textContent='';el.classList.remove('invalid');return true;
+}
+function clearErr(el) { el.classList.remove('invalid'); const e=document.getElementById('err-'+el.id.replace('f-','')); if(e)e.textContent=''; }
+function submitForm() {
+  let ok=true; ok=req('f-pname','err-pname','Parent name required')&ok; ok=req('f-rel','err-rel','Please select relationship')&ok; ok=req('f-phone','err-phone','Phone number required')&ok; ok=req('f-location','err-location','Location required')&ok;
+  if(!ok)return;
+  document.getElementById('si3').classList.remove('active'); document.getElementById('si3').classList.add('done');
+  document.getElementById('step3').style.display='none'; document.getElementById('step-success').style.display='block';
+  document.getElementById('confirm-name').textContent=document.getElementById('f-sname').value.trim();
+  document.getElementById('confirm-phone').textContent=document.getElementById('f-phone').value.trim();
+  document.getElementById('step-success').scrollIntoView({behavior:'smooth',block:'center'});
+}
+</script>
+</body>
+</html>
